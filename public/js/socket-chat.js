@@ -14,7 +14,8 @@ var usuario = { nombre: params.get('nombre'), sala: params.get('sala') };
 socket.on('connect', function() {
     console.log('Conectado al servidor');
     socket.emit('login', usuario, function(conectados) {
-        console.log('conectados: ', conectados);
+        // console.log('conectados: ', conectados);
+        renderizarUsuarios(conectados);
     });
 });
 
@@ -37,7 +38,8 @@ socket.on('disconnect', function() {
 // Escuchar información
 socket.on('crearMensaje', function(mensaje) {
 
-    console.log(mensaje);
+    // console.log(mensaje);
+    renderizarMensajes(mensaje);
 
 });
 
@@ -45,6 +47,7 @@ socket.on('crearMensaje', function(mensaje) {
 socket.on('listaPersonas', function(lista) {
 
     console.log('Servidor:', lista);
+    renderizarUsuarios(lista, false);
 
 });
 
